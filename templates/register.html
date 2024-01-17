@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="shortcut icon" href="{{ url_for('static', filename='catlogo.png') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Freehand&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@500;600;700&family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+        <title>CATCULATOR</title>
+    </head>
+<body class="reg_body">
+    <h1>Welcome to Catculator</h1>
+    <h2>Register</h2>
+    <form method="POST">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <input type="submit" value="Register">
+    </form>
+    <a class ="reg_a" href="{{ url_for('login') }}">Already have an account?</a>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+            <p style="color:red">{{ messages[0] }}</p>
+    {% endif %}
+  {% endwith %}
+</body>
+</html>

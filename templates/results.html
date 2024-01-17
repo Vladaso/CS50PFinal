@@ -1,0 +1,25 @@
+{% extends "bootstrap/base.html" %}
+{% block head %}
+{{ super() }}
+<link rel="shortcut icon" href="{{ url_for('static', filename='catlogo.png') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Freehand&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@500;600;700&family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+{% endblock %}
+{% block title %}CATCULATOR{% endblock %}
+{% block content %}
+    {% include 'navbar.html' %}
+    {% if cat %}
+    <h1 class="text-center" style="font-size: 5em;">{{cat}}</h1>
+    <h2 class="text-center" style="font-size: 2.5em;">{{description}}</h2>
+    <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+        <img class="WCat" src="{{ url_for('static', filename= cat + '.png') }}" style="display: block; margin-left: auto; margin-right: auto; margin-top: 150px;">
+    </div>
+    {% else %}
+        <div class ="reg_body"  style = "height: 50vh;">
+            <h1>No cat found go HOME and do the survey.</h1>
+        </div>
+    {% endif %}
+{% endblock %}

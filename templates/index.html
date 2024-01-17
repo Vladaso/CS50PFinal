@@ -1,0 +1,46 @@
+{% extends "bootstrap/base.html" %}
+{% block head %}
+    {{ super() }}
+    <link rel="shortcut icon" href="{{ url_for('static', filename='catlogo.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Freehand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@500;600;700&family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+    {% endblock %}
+    {% block title %}CATCULATOR{% endblock %}
+    {% block content %}
+    {% include 'navbar.html' %}
+    <img src="{{ url_for('static', filename='cat1.png') }}" alt="cat" class="stretchy-cat">
+    <img src="{{ url_for('static', filename='cat2.png') }}" alt="cat" class="cat2">
+    <img src="{{ url_for('static', filename='cat3.png') }}" alt="cat" class="cat3">
+    <img src="{{ url_for('static', filename='crunch-cat.gif') }}" alt="cat" class="crunch">
+    <img src="{{ url_for('static', filename='maxwell-cat.gif') }}" alt="cat" class="maxwell">
+    <div class="container">
+        <h1 class="text-center text-secondary mt-5 mb-4 font-weight-bold">What cat are you?</h1>
+        <h3 class="m-5">Answer the questions/statements as truthfully as possible, at the end of the quiz,
+            click submit and you will find out what cat you are! This will also help you find out
+            what cat you should adopt!
+        </h3>
+      <form method="POST">
+        <div class="mb-3">
+          {% for question in quiz.questions %}
+          <label for="{{ question.text }}" class="form-label">{{ question.text }}</label>
+          <div id="question{{ loop.index }}">
+            {% for answer in question.answers %}
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="{{question.text}}" id="{{ answer+question.text }}" value="{{loop.index-1}}" required>
+              <label class="form-check-label" for="{{answer+question.text}}">
+                {{ answer }}
+              </label>
+            </div>
+            {% endfor %}
+          </div>
+          {% endfor %}
+        </div>
+        <div class = "btn-wrapper">
+          <input type="submit" value="Submit" class = "btn btn-primary btn-lg">
+        </div>
+      </form>
+    </div>
+  {% endblock %}
